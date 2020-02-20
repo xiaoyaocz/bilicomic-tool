@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx version="2005-1" xml:lang="zh-CN" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+	<head>
+		<meta name="dtb:uid" content="{BOOK_VOL_ID}"/>
+		<meta name="dtb:depth" content="2"/>
+		<meta name="dtb:totalPageCount" content="{TOTAL_PAGE_COUNT}"/>
+		<meta name="dtb:maxPageNumber" content="{TOTAL_PAGE_COUNT}"/>
+	</head>
+	<docTitle><text>{BOOK_VOL_NAME}</text></docTitle>
+	<docAuthor><text>{BOOK_AUTHOR}</text></docAuthor>
+	<navMap>
+	{NCX}
+	</navMap>
+</ncx>

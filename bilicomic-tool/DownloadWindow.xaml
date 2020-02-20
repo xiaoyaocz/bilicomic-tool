@@ -1,0 +1,75 @@
+﻿<Window x:Class="bilicomic_tool.DownloadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bilicomic_tool"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        Title="下载漫画"  Height="750" Width="600">
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="8">
+            <TextBlock>保存路径:</TextBlock>
+            <Grid  Margin="0 8 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox  Padding="8 4" x:Name="txtPath" Text="C:\哔哩漫画下载"></TextBox>
+                <Button x:Name="btnSetPath" Click="btnSetPath_Click" Grid.Column="1" Padding="8 2">浏览</Button>
+            </Grid>
+            <CheckBox Margin="0 8 0 0" x:Name="CoverFile">覆盖已有文件</CheckBox>
+            <StackPanel x:Name="quality" Margin="0 8 0 0" Orientation="Horizontal">
+                <RadioButton Tag="" GroupName="quality" IsChecked="True">原图</RadioButton>
+                <RadioButton Tag="@1200w.jpg" GroupName="quality" Margin="8 0 0 0">高质量(1200w)</RadioButton>
+                <RadioButton Tag="@1000w.jpg" GroupName="quality" Margin="8 0 0 0">高质量(1000w)</RadioButton>
+                <RadioButton Tag="@800w.jpg" GroupName="quality" Margin="8 0 0 0">中质量(800w)</RadioButton>
+                <RadioButton Tag="@500w.jpg" GroupName="quality" Margin="8 0 0 0">低质量(500w)</RadioButton>
+            </StackPanel>
+            <StackPanel x:Name="needEpub" Margin="0 8 0 0" Orientation="Horizontal">
+                <RadioButton Tag="0" GroupName="epub"  IsChecked="True">不打包EPUB</RadioButton>
+                <RadioButton Tag="1" GroupName="epub" Margin="8 0 0 0">全部合成一个文件</RadioButton>
+                <RadioButton Tag="2" GroupName="epub" Margin="8 0 0 0">一章一个文件</RadioButton>
+            </StackPanel>
+           
+            <TextBlock Margin="0 8 0 0">线程数(<Run Text="{Binding ElementName=ThreadNum,Path=Value,Mode=OneWay}"/>):</TextBlock>
+            <Slider x:Name="ThreadNum" TickFrequency="1" Margin="0 4 0 0" SmallChange="1" Minimum="1" Value="1" Maximum="8" ></Slider>
+            <TextBlock Margin="0 8 0 0">已选章节:</TextBlock>
+        </StackPanel>
+       
+        <ListView Grid.Row="1" x:Name="list">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="8"></Setter>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" TextTrimming="CharacterEllipsis">#<Run Text="{Binding short_title}"/> <Run Text="{Binding title}"/></TextBlock>
+                        <TextBlock Text="{Binding Path=log}" Grid.Column="1" Foreground="Gray"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <Grid Grid.Row="2">
+            <TextBlock x:Name="txtStatus" VerticalAlignment="Center" Margin="12 0" HorizontalAlignment="Left"></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Margin="12" x:Name="btnStart" Click="btnStart_Click" Padding="16 8" HorizontalAlignment="Right"  VerticalAlignment="Center" Background="#E91E63" BorderBrush="#E91E63" Foreground="White">开始下载</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

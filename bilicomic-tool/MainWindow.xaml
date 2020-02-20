@@ -1,0 +1,68 @@
+﻿<Window x:Class="bilicomic_tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bilicomic_tool"
+        mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Title="哔哩哔哩漫画工具箱" Height="800" Width="480">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="#E91E63">
+            <TextBlock FontSize="18" Foreground="White" VerticalAlignment="Center" Margin="16 0" FontWeight="Bold">我的书架</TextBlock>
+        </Grid>
+        <StackPanel Margin="16 0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Margin="16 0">已登录 : <Run x:Name="txtUser"/></TextBlock>
+            <!--,漫币:
+            <Run x:Name="txtCoin" Text="0"/> ,漫读券:
+            <Run x:Name="txtCoupon" Text="0"/>-->
+            <Button x:Name="btnAbout" Click="btnAbout_Click" Background="Transparent" Padding="8 0" Foreground="White" BorderThickness="0" >关于</Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <ScrollViewer>
+                <StackPanel>
+                    <ListView  x:Name="listBookshelf" SelectionChanged="listBookshelf_SelectionChanged" ItemContainerStyle="{StaticResource BookItemStyle}">
+                        <ListView.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter></ItemsPresenter>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid >
+                                    
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Height="80"  Source="{Binding Path=cover}" Stretch="UniformToFill"></Image>
+                                    <StackPanel Grid.Column="1" Margin="12 0 0 0">
+                                        <TextBlock Margin="0 0 0 4" FontSize="16" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Text="{Binding title}"></TextBlock>
+                                        <TextBlock Margin="0 0 0 4" Foreground="Gray" VerticalAlignment="Center">看到：<Run Text="{Binding last_ep_short_title}"/></TextBlock>
+                                        <TextBlock Margin="0 0 0 4" Foreground="Gray" VerticalAlignment="Center">最新：<Run Text="{Binding latest_ep_short_title}"/></TextBlock>
+                                        <TextBlock Margin="0 0 0 4" Foreground="Gray" VerticalAlignment="Center">更新：<Run Text="{Binding last_ep_publish_time}"/></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                     
+                    </ListView>
+                    <Button x:Name="btnLoadMore" Click="btnLoadMore_Click" HorizontalAlignment="Center" Margin="8" Padding="12 4" BorderThickness="0" Background="Transparent">加载更多</Button>
+                </StackPanel>
+            </ScrollViewer>
+            
+            <StackPanel x:Name="loading" VerticalAlignment="Center" >
+                <ProgressBar Width="100" Height="16" HorizontalAlignment="Center" IsIndeterminate="True"></ProgressBar>
+                <TextBlock Margin="0 8" HorizontalAlignment="Center">加载中...</TextBlock>
+            </StackPanel>
+           
+        </Grid>
+        
+        
+    </Grid>
+</Window>

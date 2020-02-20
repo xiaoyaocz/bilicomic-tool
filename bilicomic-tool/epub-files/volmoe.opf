@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package version="2.0" unique-identifier="FileMD5" xmlns="http://www.idpf.org/2007/opf">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier id="FileMD5">{BOOK_VOL_ID}</dc:identifier>
+    	<dc:title>{BOOK_VOL_NAME}</dc:title>
+    	<dc:language>zh-CN</dc:language>
+    	<dc:creator>{BOOK_AUTHOR}</dc:creator>
+    	<dc:publisher>bilitool</dc:publisher>
+    	<dc:date>2020</dc:date>
+    	<dc:rights>Copyright &#x00A9; 2020 bilibli</dc:rights>
+	</metadata>
+	<manifest>
+		<item id="ncx" href="xml/volmoe.ncx" media-type="application/x-dtbncx+xml"/>
+    {PAGES}
+    {IMGS}
+		<item id="css" href="css/style.css" media-type="text/css"/>
+	</manifest>
+	<spine toc="ncx">
+    {PAGES_NO}
+	</spine>
+	<guide>
+	</guide>
+</package>

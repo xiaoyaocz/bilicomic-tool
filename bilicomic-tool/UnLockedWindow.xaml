@@ -1,0 +1,47 @@
+﻿<Window x:Class="bilicomic_tool.UnLockedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bilicomic_tool"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        WindowStartupLocation="CenterScreen"
+        Title="批量使用漫读券解锁" Height="450" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="8">待解锁章节:</TextBlock>
+        <ListView Grid.Row="1" x:Name="list">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="8"></Setter>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" TextTrimming="CharacterEllipsis">#<Run Text="{Binding short_title}"/> <Run Text="{Binding title}"/></TextBlock>
+                        <TextBlock Text="{Binding Path=log}" Grid.Column="1" Foreground="Gray"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+           
+        </ListView>
+        <Grid Grid.Row="2">
+            <TextBlock VerticalAlignment="Center" Visibility="Collapsed" Margin="12 0" HorizontalAlignment="Left">进度:<Run x:Name="progress" Text="0/0"/></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Margin="12" x:Name="btnStart" Click="btnStart_Click" Padding="16 8" HorizontalAlignment="Right"  VerticalAlignment="Center" Background="#E91E63" BorderBrush="#E91E63" Foreground="White">开始解锁</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
